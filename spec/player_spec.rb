@@ -19,13 +19,8 @@ describe Player do
       expect(alfred).to respond_to(:receive_damage)
     end
 
-    it 'should receive damage' do
-      expect(bruce).to receive(:receive_damage)
-      alfred.attack(bruce)
-    end
-
     it 'should reduce when damage received' do
-      expect { alfred.attack(bruce) }.to change { bruce.hit_points }.by(-10)
+      expect { bruce.receive_damage }.to change { bruce.hit_points }.by(-10)
     end
   end
 end

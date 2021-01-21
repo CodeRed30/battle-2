@@ -4,6 +4,7 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/player'
+require './lib/game'
 
 # The Battle class is the main game class.
 class Battle < Sinatra::Base
@@ -36,7 +37,7 @@ class Battle < Sinatra::Base
   post '/attack' do
     @player_1 = $player_1
     @player_2 = $player_2
-    @player_1.attack(@player_2)
+    Game.new.attack(@player_2)
     erb(:attack)
   end
 
