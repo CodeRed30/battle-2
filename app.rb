@@ -13,6 +13,9 @@ class Battle < Sinatra::Base
   end
 
   # enable :sessions
+  before do
+    @game = Game.instance
+  end
 
   get '/test_infrastructure' do
     'Testing infrastructure working!'
@@ -23,7 +26,7 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:player_1_name]), Player.new(params[:player_2_name]))
+    @game = Game.create(Player.new(params[:player_1_name]), Player.new(params[:player_2_name]))
     redirect '/play'
   end
 
@@ -32,7 +35,7 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    if $game.attack
+    if @game.attack
       erb(:attack)
     else
       redirect '/end_game'

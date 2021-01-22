@@ -9,6 +9,14 @@ class Game
     @turn = true
   end
 
+  def self.create(player_1, player_2)
+    @game = Game.new(player_1, player_2)
+  end
+
+  def self.instance
+    @game
+  end
+  
   def attack
     current_turn.receive_damage
     if current_turn.hit_points <= 0
