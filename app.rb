@@ -46,6 +46,5 @@ class Battle < Sinatra::Base
     erb(:end_game)
   end
 
-
   run! if app_file == $PROGRAM_NAME
 end
