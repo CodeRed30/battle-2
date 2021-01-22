@@ -11,7 +11,13 @@ class Game
 
   def attack
     current_turn.receive_damage
+    if current_turn.hit_points <= 0
     @turn = !@turn
+    false
+    else
+    @turn = !@turn
+    true
+    end
   end
 
   def current_turn

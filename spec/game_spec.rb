@@ -4,8 +4,8 @@ require 'game'
 
 describe Game do
   subject(:game) { described_class.new(player_1, player_2) }
-  let(:player_1) { double :player }
-  let(:player_2) { double :player }
+  let(:player_1) { double :player, hit_points: 0 }
+  let(:player_2) { double :player, hit_points: 0 }
 
   it { is_expected.to respond_to :attack }
 
@@ -23,6 +23,7 @@ end
 
   describe '#attack' do
     it 'reduces player HP' do
+      # allow(player_2).to receive(:hit_points).and_return(60)
       expect(player_2).to receive(:receive_damage)
       game.attack
     end

@@ -32,9 +32,17 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    $game.attack
-    erb(:attack)
+    if $game.attack
+      erb(:attack)
+    else
+      redirect '/end_game'
+    end
   end
+
+  get '/end_game' do
+    erb(:end_game)
+  end
+
 
   run! if app_file == $PROGRAM_NAME
 end
