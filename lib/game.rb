@@ -6,9 +6,16 @@ class Game
   def initialize(player_1, player_2)
     @player_1 = player_1
     @player_2 = player_2
+    @turn = true
   end
 
   def attack
-    @player_2.receive_damage
+    current_turn.receive_damage
+    @turn = !@turn
   end
+
+  def current_turn
+    !@turn ? @player_1 : @player_2
+  end
+
 end
